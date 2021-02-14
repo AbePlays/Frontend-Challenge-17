@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-screen-md mx-auto transform -translate-y-24 px-4">
-    <div class="bg-white font-commissioner text-center p-8 rounded-lg">
+    <div class="bg-white font-commissioner text-center p-8 rounded-lg shadow">
       <img
         src="../../assets/logo-mastercraft.svg"
         alt="mastercraft-logo"
