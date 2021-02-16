@@ -79,7 +79,7 @@
           />
         </div>
         <button
-          class="bg-moderate-cyan rounded-full px-8 text-white ml-4"
+          class="bg-moderate-cyan rounded-full px-8 text-white ml-4 hover:bg-dark-cyan transition-colors duration-300"
           :class="{ 'py-2': !quantity }"
           @click="onSubmitHandler"
         >

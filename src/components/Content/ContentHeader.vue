@@ -1,5 +1,8 @@
 <template>
-  <div class="max-w-screen-md mx-auto transform -translate-y-24 px-4">
+  <div
+    class="max-w-screen-md mx-auto transform -translate-y-24 px-4"
+    ref="card"
+  >
     <div class="bg-white font-commissioner text-center p-8 rounded-lg shadow">
       <img
         src="../../assets/logo-mastercraft.svg"
@@ -45,6 +48,8 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
+
 export default {
   data() {
     return {
@@ -57,6 +62,15 @@ export default {
     },
   },
   inject: ["toggleModal"],
+  mounted() {
+    gsap.from(this.$refs.card, {
+      duration: 1,
+      opacity: 0,
+      y: 0,
+      ease: "circle.out",
+      delay: 1,
+    });
+  },
 };
 </script>
 

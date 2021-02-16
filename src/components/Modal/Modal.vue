@@ -1,14 +1,14 @@
 <template>
   <div class="h-screen w-screen absolute top-0 left-0 z-20 p-4">
     <div class="h-full max-w-screen-md mx-auto overflow-y-scroll">
-      <div class="bg-white p-6 font-commissioner shadow rounded-lg">
+      <div class="bg-white p-6 font-commissioner shadow rounded-lg" ref="modal">
         <div class="flex justify-between items-center">
           <h1 class="font-bold">Back this project</h1>
           <img
             src="../../assets/icon-close-modal.svg"
             alt="close-modal"
             class="cursor-pointer"
-            @click="toggleModal"
+            @click="handleCross"
           />
         </div>
         <p class="text-dark-gray my-6">
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
 import Pledge from "./Pledge.vue";
 
 export default {
@@ -56,9 +57,24 @@ export default {
     handleSelection(index) {
       this.selectedIndex = index;
     },
+    handleCross() {
+      gsap.to(this.$refs.modal, {
+        duration: 0.2,
+        opacity: 0,
+        scale: 0.8,
+        ease: "power3.out",
+        onComplete: this.toggleModal,
+      });
+    },
   },
-
   inject: ["toggleModal", "products"],
+  mounted() {
+    gsap.from(this.$refs.modal, {
+      duration: 0.3,
+      opacity: 0,
+      scale: 0.8,
+    });
+  },
 };
 </script>
 

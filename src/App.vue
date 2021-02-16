@@ -7,7 +7,7 @@
     <the-content></the-content>
     <about></about>
     <modal v-if="showModal"></modal>
-    <cofirm-modal v-if="showConfirmModal"></cofirm-modal>
+    <confirm-modal v-if="showConfirmModal"></confirm-modal>
     <div
       v-if="isBackdropOpen"
       class="absolute top-0 left-0 right-0 h-screen bg-black opacity-50 z-10"
@@ -20,7 +20,7 @@ import TheHeader from "./components/Header";
 import TheContent from "./components/Content";
 import About from "./components/About";
 import Modal from "./components/Modal";
-import CofirmModal from "./components/Modal/Confirm.vue";
+import ConfirmModal from "./components/Modal/Confirm.vue";
 
 export default {
   name: "App",
@@ -29,7 +29,7 @@ export default {
     TheContent,
     About,
     Modal,
-    CofirmModal,
+    ConfirmModal,
   },
   data() {
     return {

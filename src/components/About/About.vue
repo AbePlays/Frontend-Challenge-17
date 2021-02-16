@@ -1,5 +1,8 @@
 <template>
-  <div class="max-w-screen-md mx-auto transform -translate-y-24 px-4 mt-6">
+  <div
+    class="max-w-screen-md mx-auto transform -translate-y-24 px-4 mt-6"
+    ref="card"
+  >
     <div class="bg-white font-commissioner p-8 rounded-lg shadow">
       <div>
         <h1 class="font-bold text-xl">About this project</h1>
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
 import Product from "./Product.vue";
 
 export default {
@@ -34,6 +38,14 @@ export default {
     Product,
   },
   inject: ["products"],
+  mounted() {
+    gsap.from(this.$refs.card, {
+      duration: 1,
+      y: 0,
+      opacity: 0,
+      delay: 2,
+    });
+  },
 };
 </script>
 

@@ -42,23 +42,18 @@
       v-if="isDropdownOpen"
       class="absolute top-20 left-0 right-0 max-w-screen-lg mx-auto px-4 shadow z-20"
     >
-      <div class="bg-white rounded-lg py-2">
-        <a href="#" class="block my-3 w-max px-4" @click="toggleMenu">About</a>
-        <div class="w-full h-px bg-gray-200"></div>
-        <a href="#" class="block my-3 w-max px-4" @click="toggleMenu"
-          >Discover</a
-        >
-        <div class="w-full h-px bg-gray-200"></div>
-        <a href="#" class="block my-3 w-max px-4" @click="toggleMenu"
-          >Get Started</a
-        >
-      </div>
+      <dropdown :toggleMenu="toggleMenu"></dropdown>
     </div>
   </header>
 </template>
 
 <script>
+import Dropdown from "./Dropdown.vue";
+
 export default {
+  components: {
+    Dropdown,
+  },
   data() {
     return {
       isDropdownOpen: false,

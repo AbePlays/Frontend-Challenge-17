@@ -1,5 +1,8 @@
 <template>
-  <div class="max-w-screen-md mx-auto transform -translate-y-24 px-4 mt-8">
+  <div
+    class="max-w-screen-md mx-auto transform -translate-y-24 px-4 mt-8"
+    ref="card"
+  >
     <div class="bg-white font-commissioner p-8 rounded-lg text-center shadow">
       <div class="block sm:flex sm:justify-between sm:items-center">
         <div>
@@ -37,8 +40,19 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
+
 export default {
   inject: ["moneyRaised", "totalBackers", "goal"],
+  mounted() {
+    gsap.from(this.$refs.card, {
+      duration: 1,
+      y: 0,
+      opacity: 0,
+      ease: "circle.out",
+      delay: 1.5,
+    });
+  },
 };
 </script>
 
