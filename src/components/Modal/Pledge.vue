@@ -103,20 +103,21 @@ export default {
   methods: {
     toggleSelected() {
       if (this.quantity || this.id === 0) {
+        this.error = false;
         this.$emit("selected", this.id);
-        console.log("yo");
       }
     },
     onSubmitHandler() {
       if (this.quantity !== 0 && this.amount < this.price) {
         this.error = true;
       } else {
+        this.incrementBackers();
         this.toggleModal();
         this.toggleConfirmModal();
       }
     },
   },
-  inject: ["toggleConfirmModal", "toggleModal"],
+  inject: ["toggleConfirmModal", "toggleModal", "incrementBackers"],
   emits: ["selected"],
 };
 </script>

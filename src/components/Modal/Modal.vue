@@ -25,7 +25,7 @@
           @selected="handleSelection"
         ></pledge>
         <pledge
-          v-for="item in items"
+          v-for="item in products"
           :key="item.id"
           :id="item.id"
           :title="item.name"
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import { products } from "../data";
 import Pledge from "./Pledge.vue";
 
 export default {
@@ -50,7 +49,6 @@ export default {
   },
   data() {
     return {
-      items: products,
       selectedIndex: -1,
     };
   },
@@ -60,7 +58,7 @@ export default {
     },
   },
 
-  inject: ["toggleModal"],
+  inject: ["toggleModal", "products"],
 };
 </script>
 

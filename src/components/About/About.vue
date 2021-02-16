@@ -15,7 +15,7 @@
         </p>
       </div>
       <product
-        v-for="item in items"
+        v-for="item in products"
         :key="item.id"
         :productName="item.name"
         :productDescription="item.description"
@@ -33,36 +33,7 @@ export default {
   components: {
     Product,
   },
-  data() {
-    return {
-      items: [
-        {
-          id: 1,
-          name: "Bamboo Stand",
-          quantity: 101,
-          description:
-            "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
-          amount: 25,
-        },
-        {
-          id: 2,
-          name: "Black Edition Stand",
-          quantity: 64,
-          description:
-            "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-          amount: 75,
-        },
-        {
-          id: 3,
-          name: "Mahogany Special Edition",
-          quantity: 0,
-          description:
-            "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
-          amount: 200,
-        },
-      ],
-    };
-  },
+  inject: ["products"],
 };
 </script>
 
