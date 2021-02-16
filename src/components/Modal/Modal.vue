@@ -16,18 +16,24 @@
           the world?
         </p>
         <pledge
+          :id="0"
           :title="'Pledge with no reward'"
           :description="'Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.'"
           :price="null"
           :quantity="null"
+          :isSelected="selectedIndex === 0"
+          @selected="handleSelection"
         ></pledge>
         <pledge
           v-for="item in items"
           :key="item.id"
+          :id="item.id"
           :title="item.name"
           :description="item.description"
           :price="item.amount"
           :quantity="item.quantity"
+          :isSelected="selectedIndex === item.id"
+          @selected="handleSelection"
         ></pledge>
       </div>
     </div>
@@ -45,8 +51,15 @@ export default {
   data() {
     return {
       items: products,
+      selectedIndex: -1,
     };
   },
+  methods: {
+    handleSelection(index) {
+      this.selectedIndex = index;
+    },
+  },
+
   inject: ["toggleModal"],
 };
 </script>

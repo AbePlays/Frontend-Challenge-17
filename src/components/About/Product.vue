@@ -20,6 +20,7 @@
       <button
         class="bg-moderate-cyan rounded-full px-8 py-2 text-white mt-4 sm:mt-0 hover:bg-dark-cyan transition-colors duration-300"
         :class="{ 'bg-dark-gray hover:bg-dark-gray': productQuantity === 0 }"
+        @click="clickHandler"
       >
         {{ productQuantity === 0 ? "Out of Stock" : "Select Reward" }}
       </button>
@@ -35,5 +36,13 @@ export default {
     "pledgeMoney",
     "productQuantity",
   ],
+  methods: {
+    clickHandler() {
+      if (this.productQuantity !== 0) {
+        this.toggleModal();
+      }
+    },
+  },
+  inject: ["toggleModal"],
 };
 </script>

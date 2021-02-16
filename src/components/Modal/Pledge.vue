@@ -1,7 +1,10 @@
 <template>
   <div
     class="border rounded-lg my-4 font-commissioner"
-    :class="{ 'border-dark-cyan': isSelected, 'opacity-40': quantity === 0 }"
+    :class="{
+      'border-dark-cyan': isSelected,
+      'opacity-40': quantity === 0,
+    }"
   >
     <div class="p-6">
       <div
@@ -21,6 +24,7 @@
               :class="{
                 'hover:text-moderate-cyan cursor-pointer': quantity !== 0,
               }"
+              @click="toggleSelected"
             >
               {{ title }}
             </h1>
@@ -43,26 +47,40 @@
         </div>
       </div>
     </div>
-    <div v-if="isSelected && quantity" class="w-full h-px shadow-inner"></div>
+    <div v-if="isSelected" class="w-full h-px shadow-inner"></div>
     <div
-      v-if="isSelected && quantity"
-      class="sm:flex sm:justify-between px-6 py-4 sm:items-center"
+      v-if="isSelected"
+      :class="{ 'sm:justify-end': !quantity, 'sm:justify-between': quantity }"
+      class="sm:flex px-6 py-4 sm:items-center"
     >
-      <p class="text-dark-gray text-center sm:text-left w-full">
+      <p
+        v-if="!error && quantity"
+        class="text-dark-gray text-center sm:text-left w-full"
+      >
         Enter your pledge
       </p>
-      <div class="flex justify-center mt-4 sm:mt-0">
-        <div class="rounded-full border flex py-2 px-4">
+      <p
+        v-else-if="error && quantity"
+        class="text-red-600 text-center sm:text-left w-full"
+      >
+        Enter ${{ price }} or more
+      </p>
+
+      <div class="flex justify-center mt-4 sm:mt-0 relative">
+        <div v-if="quantity" class="rounded-full border flex py-2 px-4">
           <p class="text-dark-gray">$</p>
           <input
             type="text"
             name="amount-input"
             id="amount-input"
             class="ml-2 w-12"
+            v-model="amount"
+            :placeholder="price"
           />
         </div>
         <button
           class="bg-moderate-cyan rounded-full px-8 text-white ml-4"
+          :class="{ 'py-2': !quantity }"
           @click="onSubmitHandler"
         >
           Continue
@@ -74,22 +92,31 @@
 
 <script>
 export default {
-  props: ["title", "description", "quantity", "price"],
+  props: ["title", "description", "quantity", "price", "id", "isSelected"],
   data() {
     return {
-      isSelected: false,
+      amount: "",
       picked: "",
+      error: false,
     };
   },
   methods: {
     toggleSelected() {
-      this.isSelected = !this.isSelected;
+      if (this.quantity || this.id === 0) {
+        this.$emit("selected", this.id);
+        console.log("yo");
+      }
     },
     onSubmitHandler() {
-      this.toggleModal();
-      this.toggleConfirmModal();
+      if (this.quantity !== 0 && this.amount < this.price) {
+        this.error = true;
+      } else {
+        this.toggleModal();
+        this.toggleConfirmModal();
+      }
     },
   },
   inject: ["toggleConfirmModal", "toggleModal"],
+  emits: ["selected"],
 };
 </script>
