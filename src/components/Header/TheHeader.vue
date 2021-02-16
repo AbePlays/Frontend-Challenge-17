@@ -15,7 +15,7 @@
     <div
       class="absolute top-4 left-0 right-0 max-w-screen-lg mx-auto h-12 px-4 flex justify-between text-white items-center"
     >
-      <img src="../../assets/logo.svg" class="h-6" alt="" />
+      <img src="../../assets/logo.svg" class="h-6" alt="logo" />
       <div>
         <ul class="hidden sm:flex">
           <li class="mr-4"><a href="#">About</a></li>

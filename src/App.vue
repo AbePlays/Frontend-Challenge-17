@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-gray-50 relative">
+  <div
+    class="bg-gray-50 relative"
+    :class="{ 'overflow-hidden h-screen': isBackdropOpen }"
+  >
     <the-header></the-header>
     <the-content></the-content>
     <about></about>
@@ -44,6 +47,7 @@ export default {
       this.showModal = !this.showModal;
     },
     toggleConfirmModal() {
+      this.toggleBackdrop();
       this.showConfirmModal = !this.showConfirmModal;
     },
   },

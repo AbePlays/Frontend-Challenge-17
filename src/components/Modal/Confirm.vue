@@ -1,5 +1,4 @@
 <template>
-  <div class="absolute top-0 left-0 right-0 h-screen opacity-50 bg-black"></div>
   <div
     class="flex justify-center items-center absolute top-4 left-4 right-4 min-h-screen max-w-screen-sm mx-auto z-30"
   >
