@@ -1,35 +1,45 @@
 <template>
   <div
     class="border rounded-lg my-4 font-commissioner"
-    :class="{ 'border-dark-cyan': isSelected }"
+    :class="{ 'border-dark-cyan': isSelected, 'opacity-40': quantity === 0 }"
   >
     <div class="p-6">
-      <div class="flex justify-between items-baseline">
-        <input type="radio" id="select" value="select" v-model="picked" />
-        <div class="ml-4">
-          <div class="flex justify-between">
-            <div class="flex flex-wrap">
-              <h1 class="font-bold">{{ title }}</h1>
-              <p v-if="price" class="sm:ml-4 text-moderate-cyan">
-                Pledge ${{ price }} or more
-              </p>
-            </div>
-            <div
-              v-if="quantity !== null"
-              class="hidden sm:flex sm:items-center"
+      <div
+        class="w-5 h-5 rounded-full border flex justify-center items-center cursor-pointer"
+        @click="toggleSelected"
+      >
+        <div
+          v-if="isSelected"
+          class="w-3 h-3 rounded-full bg-moderate-cyan"
+        ></div>
+      </div>
+      <div class="ml-10 -mt-6">
+        <div class="flex justify-between">
+          <div class="flex flex-wrap">
+            <h1
+              class="font-bold"
+              :class="{
+                'hover:text-moderate-cyan cursor-pointer': quantity !== 0,
+              }"
             >
-              <p class="font-bold text-xl">{{ quantity }}</p>
-              <span class="ml-1 font-light text-dark-gray text-sm">left</span>
-            </div>
+              {{ title }}
+            </h1>
+            <p v-if="price" class="sm:ml-4 text-moderate-cyan">
+              Pledge ${{ price }} or more
+            </p>
           </div>
-          <p class="my-4 text-dark-gray">{{ description }}</p>
-          <div
-            v-if="quantity !== null"
-            class="sm:hidden mt-4 sm:mt-0 flex items-center"
-          >
+          <div v-if="quantity !== null" class="hidden sm:flex sm:items-center">
             <p class="font-bold text-xl">{{ quantity }}</p>
             <span class="ml-1 font-light text-dark-gray text-sm">left</span>
           </div>
+        </div>
+        <p class="my-4 text-dark-gray">{{ description }}</p>
+        <div
+          v-if="quantity !== null"
+          class="sm:hidden mt-4 sm:mt-0 flex items-center"
+        >
+          <p class="font-bold text-xl">{{ quantity }}</p>
+          <span class="ml-1 font-light text-dark-gray text-sm">left</span>
         </div>
       </div>
     </div>
@@ -51,7 +61,10 @@
             class="ml-2 w-12"
           />
         </div>
-        <button class="bg-moderate-cyan rounded-full px-8 text-white ml-4">
+        <button
+          class="bg-moderate-cyan rounded-full px-8 text-white ml-4"
+          @click="onSubmitHandler"
+        >
           Continue
         </button>
       </div>
@@ -68,5 +81,15 @@ export default {
       picked: "",
     };
   },
+  methods: {
+    toggleSelected() {
+      this.isSelected = !this.isSelected;
+    },
+    onSubmitHandler() {
+      this.toggleModal();
+      this.toggleConfirmModal();
+    },
+  },
+  inject: ["toggleConfirmModal", "toggleModal"],
 };
 </script>

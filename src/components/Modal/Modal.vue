@@ -1,12 +1,16 @@
 <template>
-  <div class="absolute top-0 left-0 right-0 h-screen opacity-50 bg-black"></div>
   <div
-    class="flex justify-center items-center absolute top-4 left-4 right-4 min-h-screen max-w-screen-md mx-auto"
+    class="flex justify-center items-center absolute top-4 left-4 right-4 min-h-screen max-w-screen-md mx-auto z-20"
   >
-    <div class="bg-white rounded-lg w-full p-6 font-commissioner">
+    <div class="bg-white rounded-lg w-full p-6 font-commissioner shadow">
       <div class="flex justify-between items-center">
         <h1 class="font-bold">Back this project</h1>
-        <img src="../../assets/icon-close-modal.svg" alt="close-modal" />
+        <img
+          src="../../assets/icon-close-modal.svg"
+          alt="close-modal"
+          class="cursor-pointer"
+          @click="toggleModal"
+        />
       </div>
       <p class="text-dark-gray my-6">
         Want to support us in bringing Mastercraft Bamboo Monitor Riser out in
@@ -43,6 +47,7 @@ export default {
       items: products,
     };
   },
+  inject: ["toggleModal"],
 };
 </script>
 

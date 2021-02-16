@@ -3,8 +3,12 @@
     <the-header></the-header>
     <the-content></the-content>
     <about></about>
-    <modal></modal>
-    <confirm></confirm>
+    <modal v-if="showModal"></modal>
+    <cofirm-modal v-if="showConfirmModal"></cofirm-modal>
+    <div
+      v-if="isBackdropOpen"
+      class="absolute top-0 left-0 right-0 h-screen bg-black opacity-50 z-10"
+    ></div>
   </div>
 </template>
 
@@ -13,7 +17,7 @@ import TheHeader from "./components/Header";
 import TheContent from "./components/Content";
 import About from "./components/About";
 import Modal from "./components/Modal";
-import Confirm from "./components/Modal/Confirm.vue";
+import CofirmModal from "./components/Modal/Confirm.vue";
 
 export default {
   name: "App",
@@ -22,7 +26,33 @@ export default {
     TheContent,
     About,
     Modal,
-    Confirm,
+    CofirmModal,
+  },
+  data() {
+    return {
+      isBackdropOpen: false,
+      showModal: false,
+      showConfirmModal: false,
+    };
+  },
+  methods: {
+    toggleBackdrop() {
+      this.isBackdropOpen = !this.isBackdropOpen;
+    },
+    toggleModal() {
+      this.toggleBackdrop();
+      this.showModal = !this.showModal;
+    },
+    toggleConfirmModal() {
+      this.showConfirmModal = !this.showConfirmModal;
+    },
+  },
+  provide() {
+    return {
+      toggleModal: this.toggleModal,
+      toggleBackdrop: this.toggleBackdrop,
+      toggleConfirmModal: this.toggleConfirmModal,
+    };
   },
 };
 </script>
