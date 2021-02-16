@@ -31,13 +31,16 @@
 
 <script>
 import { gsap } from "gsap";
+import { mapGetters } from "vuex";
 import Product from "./Product.vue";
 
 export default {
   components: {
     Product,
   },
-  inject: ["products"],
+  computed: {
+    ...mapGetters(["products"]),
+  },
   mounted() {
     gsap.from(this.$refs.card, {
       duration: 1,

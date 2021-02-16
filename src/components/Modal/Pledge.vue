@@ -96,7 +96,6 @@ export default {
   data() {
     return {
       amount: "",
-      picked: "",
       error: false,
     };
   },
@@ -111,13 +110,17 @@ export default {
       if (this.quantity !== 0 && this.amount < this.price) {
         this.error = true;
       } else {
-        this.incrementBackers();
+        this.$store.commit("incrementBackers");
+        this.$store.commit("changeProducts", {
+          id: this.id,
+          amount: this.amount,
+        });
         this.toggleModal();
         this.toggleConfirmModal();
       }
     },
   },
-  inject: ["toggleConfirmModal", "toggleModal", "incrementBackers"],
+  inject: ["toggleConfirmModal", "toggleModal"],
   emits: ["selected"],
 };
 </script>

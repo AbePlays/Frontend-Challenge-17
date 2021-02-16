@@ -41,9 +41,12 @@
 
 <script>
 import { gsap } from "gsap";
+import { mapGetters } from "vuex";
 
 export default {
-  inject: ["moneyRaised", "totalBackers", "goal"],
+  computed: {
+    ...mapGetters(["moneyRaised", "totalBackers", "goal"]),
+  },
   mounted() {
     gsap.from(this.$refs.card, {
       duration: 1,

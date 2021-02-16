@@ -42,6 +42,7 @@
 
 <script>
 import { gsap } from "gsap";
+import { mapGetters } from "vuex";
 import Pledge from "./Pledge.vue";
 
 export default {
@@ -52,6 +53,9 @@ export default {
     return {
       selectedIndex: -1,
     };
+  },
+  computed: {
+    ...mapGetters(["products"]),
   },
   methods: {
     handleSelection(index) {
@@ -67,7 +71,7 @@ export default {
       });
     },
   },
-  inject: ["toggleModal", "products"],
+  inject: ["toggleModal"],
   mounted() {
     gsap.from(this.$refs.modal, {
       duration: 0.3,
