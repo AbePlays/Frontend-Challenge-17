@@ -15,11 +15,11 @@
     <div
       class="absolute top-4 left-0 right-0 max-w-screen-lg mx-auto h-12 px-4 flex justify-between text-white items-center"
     >
-      <img src="../../assets/logo.svg" class="h-6" alt="logo" />
+      <a href="#"><img src="../../assets/logo.svg" class="h-6" alt="logo" /></a>
       <div>
         <ul class="hidden sm:flex">
-          <li class="mr-4"><a href="#">About</a></li>
-          <li class="mr-4"><a href="#">Discover</a></li>
+          <li class="mr-6"><a href="#">About</a></li>
+          <li class="mr-6"><a href="#">Discover</a></li>
           <li class=""><a href="#">Get Started</a></li>
         </ul>
         <img

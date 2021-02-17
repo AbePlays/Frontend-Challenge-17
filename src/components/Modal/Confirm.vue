@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex justify-center items-center absolute top-4 left-4 right-4 min-h-screen max-w-screen-sm mx-auto z-30"
+    class="flex justify-center items-center absolute top-4 left-4 right-4 min-h-screen max-w-md mx-auto z-30"
   >
     <div class="bg-white rounded-lg text-center p-8" ref="confirmModal">
       <img src="../../assets/icon-check.svg" alt="check" class="mx-auto mt-4" />
